@@ -24,7 +24,7 @@ DB_TYPE_CACHE_KEY = (
 )
 
 
-class JSONField(six.with_metaclass(models.SubfieldBase, models.Field)):
+class JSONField(models.Field):
     """
     A field that will ensure the data entered into it is valid JSON.
     """
@@ -32,8 +32,6 @@ class JSONField(six.with_metaclass(models.SubfieldBase, models.Field)):
         'invalid': _("'%s' is not a valid JSON string.")
     }
     description = "JSON object"
-
-    __metaclass__ = models.SubfieldBase
 
     def __init__(self, *args, **kwargs):
         if not kwargs.get('null', False):
