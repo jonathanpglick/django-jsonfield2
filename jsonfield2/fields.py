@@ -81,6 +81,9 @@ class JSONField(models.Field):
             return 'longtext'
         return 'text'
 
+    def from_db_field(self, value):
+        return self.to_python(value)
+
     def to_python(self, value):
         if isinstance(value, six.string_types):
             if value == "":
